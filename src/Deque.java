@@ -21,23 +21,31 @@ public class Deque<Item> implements Iterable<Item> {
     /** Construct an empty deque. */
     public Deque() {
         // TODO: Initialize an empty linked list.
+        head = new Node();
+        tail = new Node();
+        size = 0;
     }
 
     /** Return whether the deque is empty. */
     public boolean isEmpty() {
         // TODO: Report whether this linked list contains no items.
-        return false;
+        return size == 0;
     }
 
     /** Return the number of items in the deque. */
     public int size() {
         // TODO: Return this linked list's item count.
-        return 0;
+        return size;
     }
 
     /** Add an item to the front; reject null items with IllegalArgumentException. */
     public void addFirst(Item item) {
         // TODO: Create a node and link it at the front; update head/tail pointers.
+        Node newnode = new Node(); newnode.item = item;
+        newnode.prev = head;
+        newnode.next = head.next;
+
+
     }
 
     /** Add an item to the back; reject null items with IllegalArgumentException. */
