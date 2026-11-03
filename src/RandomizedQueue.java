@@ -13,35 +13,56 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
     /** Construct an empty randomized queue. */
     public RandomizedQueue() {
         // TODO: Initialize an empty array-backed randomized queue. Resize by doubling when full and halving when quarter full.
+        items = (Item[]) new Object[2];
+        size = 0;
     }
 
     /** Return whether the randomized queue is empty. */
     public boolean isEmpty() {
         // TODO: Report whether this array-backed queue contains no items.
-        return false;
+        return size == 0;
     }
 
     /** Return the number of items in the randomized queue. */
     public int size() {
         // TODO: Return this array-backed queue's item count.
-        return 0;
+        return size;
     }
 
     /** Add an item; reject null with IllegalArgumentException. */
     public void enqueue(Item item) {
         // TODO: Add the item to the backing array, resizing as needed.
+        if (item == null) throw new IllegalArgumentException("null");
+        if (++size >= items.length) {
+            resize(items.length*2);
+        }
+        items[size-1] = item;
     }
 
     /** Remove and return a uniformly random item; throw NoSuchElementException if empty. */
     public Item dequeue() {
         // TODO: Pick a random index between 0 and size-1; swap the chosen item with the last item, then remove and resize as needed.
-        return null;
+        int idx = (int)(Math.random()*size);
+        Item out = items[idx];
+        if (--size < items.length/4) {
+            resize(items.length / 2);
+        }
+        items[idx] = items[size];
+        items[size] = null;
+        return out;
+    }
+
+    private void resize(int newCap) {
+        Item[] temp = (Item[]) new Object[newCap];
+        for (int i = 0; i < size; ++i) temp[i] = items[i];
+        items = temp;
     }
 
     /** Return a uniformly random item without removing it; throw NoSuchElementException if empty. */
     public Item sample() {
         // TODO: Pick a random index between 0 and size-1 and return that array item without removing it.
-        return null;
+        if (size == 0) throw new NoSuchElementException("empty");
+        return items[(int)(Math.random()*size)];
     }
 
     /** Return an independent iterator in uniformly random order; define next() and remove() exceptions. */
