@@ -183,18 +183,18 @@ public class RandomizedQueueTest {
 
          testRandomizedQueueConstructor();
          testRandomizedQueueIsEmpty();
-//         testRandomizedQueueSize();
-//         testRandomizedQueueEnqueue();
-        // testRandomizedQueueEnqueueNull();
-        // testRandomizedQueueDequeue();
-        // testRandomizedQueueDequeueEmpty();
-        // testRandomizedQueueSample();
-        // testRandomizedQueueSampleEmpty();
-        // testRandomizedQueueIterator();
-        // testRandomizedQueueIteratorIndependence();
-        // testRandomizedQueueIteratorRandomOrder();
-        // testRandomizedQueueIteratorNextExhausted();
-        // testRandomizedQueueIteratorRemoveUnsupported();
+         testRandomizedQueueSize();
+         testRandomizedQueueEnqueue();
+         testRandomizedQueueEnqueueNull();
+         testRandomizedQueueDequeue();
+         testRandomizedQueueDequeueEmpty();
+         testRandomizedQueueSample();
+         testRandomizedQueueSampleEmpty();
+         testRandomizedQueueIterator();
+         testRandomizedQueueIteratorIndependence();
+         testRandomizedQueueIteratorRandomOrder();
+         testRandomizedQueueIteratorNextExhausted();
+         testRandomizedQueueIteratorRemoveUnsupported();
 
         System.out.println("\nSummary: " + passed + " passed, " + failed + " failed.");
     }

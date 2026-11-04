@@ -71,19 +71,33 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
         // TODO: Return an independent iterator that traverses the array items in random order.
 
 
-        return null;
+        return new RandomizedQueueIterator();
     }
     private class RandomizedQueueIterator implements Iterator<Item>{
         private Item[] shuffledItems;
         private int current;
+
+        public RandomizedQueueIterator() {
+            shuffledItems = (Item[]) new Object[size];
+            for (int i= 0; i < size; ++i) shuffledItems[i] = items[i];
+            for (int i = size-1; i >= 0; --i) {
+                int idx = (int)(Math.random()*(i+1));
+                Item temp = shuffledItems[i];
+                shuffledItems[i] = shuffledItems[idx];
+                shuffledItems[idx] = temp;
+            }
+            current = 0;
+        }
+
         @Override
         public boolean hasNext() {
-            return false;
+            return current < size-1;
         }
 
         @Override
         public Item next() {
-            return null;
+            if (!hasNext()) throw new NoSuchElementException("no next");
+            return shuffledItems[++current];
         }
     }
 
